@@ -1,0 +1,49 @@
+#######################################
+# Syntax Coloring Map For HeatZ
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+NTPClient   KEYWORD2
+begin  KEYWORD2
+setNtpServerName  KEYWORD2
+getNtpServerName  KEYWORD2
+getNtpServerNamePtr  KEYWORD2
+getTime  KEYWORD2
+getTimeZone  KEYWORD2
+setInterval  KEYWORD2
+getInterval  KEYWORD2
+getShortInterval  KEYWORD2
+getLongInterval  KEYWORD2
+setDayLight  KEYWORD2
+getDayLight  KEYWORD2
+getTimeStr  KEYWORD2
+getDateStr  KEYWORD2
+getTimeDateString  KEYWORD2
+getLastNTPSync   KEYWORD2
+getUptimeString   KEYWORD2
+getUptime   KEYWORD2
+getLastBootTime  KEYWORD2
+getFirstSync  KEYWORD2
+onNTPSyncEvent  KEYWORD2
+isSummerTime   KEYWORD2
+isSummerTimePeriod  KEYWORD2
+
+#######################################
+# Instances (KEYWORD2)
+#######################################
+
+NTPClient	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+HUMAN_READABLE LITERAL1
+ISO_8601 LITERAL1

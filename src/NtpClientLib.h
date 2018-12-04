@@ -106,10 +106,15 @@ const int NTP_PACKET_SIZE = 48; // NTP time is in the first 48 bytes of message
 #endif // NETWORK_TYPE
 
 typedef enum {
-    timeSyncd, // Time successfully got from NTP server
+    timeSyncd,  // Time successfully got from NTP server
     noResponse, // No response from server
     invalidAddress // Address not reachable
 } NTPSyncEvent_t;
+
+typedef enum {
+    HUMAN_READABLE,   // Human readable string format
+    ISO_8601     // Timestamp in ISO 8601 format
+} NTPStrFormat_t;
 
 #if defined ARDUINO_ARCH_ESP8266 || defined ARDUINO_ARCH_ESP32
 #include <functional>
@@ -286,19 +291,38 @@ public:
     String getDateStr (time_t moment);
 
     /**
-    * Convert current time and date to a String.
+    * Convert current time and date to a human readable String.
     * @param[out] String constructed from current time.
     * TODO: Add internationalization support
     */
     String getTimeDateString () { return getTimeDateString (now ()); }
 
     /**
-    * Convert current time and date to a String.
+    * Convert current time and date to a human readable String.
     * @param[in] time_t object to convert to String.
     * @param[out] String constructed from current time.
     * TODO: Add internationalization support
     */
-    String getTimeDateString (time_t moment);
+    String getTimeDateString (time_t moment) { return getTimeDateString (moment, HUMAN_READABLE); }
+
+    /**
+    * Convert current time and date to formatted String based on
+    * provided format.
+    * @param[in] NTPStrFormat_t constant to define String format
+    * @param[out] String constructed from current time.
+    * TODO: Add internationalization support
+    */
+    String getTimeDateString (NTPStrFormat_t format) { return getTimeDateString (now (), format); }
+
+    /**
+    * Convert current time and date to a formatted String based on
+    * provided format
+    * @param[in] time_t object to convert to String.
+    * @param[in] NTPStrFormat_t constant to define String format
+    * @param[out] String constructed from current time.
+    * TODO: Add internationalization support
+    */
+    String getTimeDateString (time_t moment, NTPStrFormat_t format);
 
     /**
     * Gets last successful sync time in UNIX format.

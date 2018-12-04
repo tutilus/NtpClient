@@ -288,13 +288,25 @@ String NTPClient::getTimeStr (time_t moment) {
 
 String NTPClient::getDateStr (time_t moment) {
     char dateStr[12];
-    sprintf (dateStr, "%02d/%02d/%4d", day (moment), month (moment), year (moment));
+ 2 (moment), month (moment), year (moment));
 
-    return dateStr;
-}
+ 2
+}2
 
-String NTPClient::getTimeDateString (time_t moment) {
-    return getTimeStr (moment) + " " + getDateStr (moment);
+String NTPClient::getTimeDateString (time_t moment, NTPStrFormat_t format) {
+    switch(format) {
+      case ISO_8601:
+        char dateStr[20];
+        sprintf (dateStr, 
+                 "%04d%02d%02dT%02d%02d%02d%+03d", 
+                 year (moment), month (moment), day (moment),
+                 hour (moment), minute (moment), second (moment),
+                 getTimeZone());
+        return dateStr;
+      case HUMAN_READABLE:
+      default: // HUMAN READABLE by default
+        return getTimeStr (moment) + " " + getDateStr (moment);
+    }
 }
 
 time_t NTPClient::getLastNTPSync () {
